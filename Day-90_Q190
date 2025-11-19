@@ -1,0 +1,36 @@
+/*
+Define a struct with enum Gender and print person's gender. in c also put the exact same ques in comment at the top
+*/
+
+#include <stdio.h>
+
+// Define Gender enumeration
+typedef enum {
+    MALE,
+    FEMALE
+} Gender;
+
+// Define Person struct with gender field
+typedef struct {
+    char name[50];
+    int age;
+    Gender gender;
+} Person;
+
+// Function to print gender
+void printGender(Gender g) {
+    if (g == MALE) {
+        printf("Male\n");
+    } else if (g == FEMALE) {
+        printf("Female\n");
+    } else {
+        printf("Unknown\n");
+    }
+}
+
+int main() {
+    Person person1 = {"Alex", 30, MALE};
+    printf("Name: %s\nAge: %d\nGender: ", person1.name, person1.age);
+    printGender(person1.gender);
+    return 0;
+}
