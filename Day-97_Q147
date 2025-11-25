@@ -1,0 +1,53 @@
+// Store employee data in a binary file using fwrite() and read using fread().
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct employee {
+    char name[50];
+    float salary;
+};
+
+int main() {
+    FILE *file;
+    struct employee emp;
+    char choice;
+
+    // Open file for writing in binary mode
+    file = fopen("employee.dat", "wb");
+    if (file == NULL) {
+        printf("Unable to open file for writing.\n");
+        return 1;
+    }
+
+    // Input employee details and write to file
+    do {
+        printf("Enter employee name: ");
+        scanf("%s", emp.name);
+        printf("Enter employee salary: ");
+        scanf("%f", &emp.salary);
+
+        fwrite(&emp, sizeof(emp), 1, file);
+
+        printf("Add another employee? (y/n): ");
+        scanf(" %c", &choice);
+    } while (choice == 'y' || choice == 'Y');
+
+    fclose(file);
+
+    // Open file for reading in binary mode
+    file = fopen("employee.dat", "rb");
+    if (file == NULL) {
+        printf("Unable to open file for reading.\n");
+        return 1;
+    }
+
+    printf("\nEmployee data from file:\n");
+    // Read and display all records
+    while (fread(&emp, sizeof(emp), 1, file) == 1) {
+        printf("Name: %s, Salary: %.2f\n", emp.name, emp.salary);
+    }
+
+    fclose(file);
+    return 0;
+}
