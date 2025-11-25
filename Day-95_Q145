@@ -1,0 +1,39 @@
+// Return a structure containing top student's details from a function.
+
+#include <stdio.h>
+
+struct student {
+    char name[50];
+    int roll;
+    float marks;
+};
+
+struct student getTopStudent(struct student arr[], int n) {
+    int max_idx = 0;
+    for (int i = 1; i < n; ++i) {
+        if (arr[i].marks > arr[max_idx].marks)
+            max_idx = i;
+    }
+    return arr[max_idx];
+}
+
+int main() {
+    struct student s[5];
+    for (int i = 0; i < 5; ++i) {
+        // Input details for each student here
+        printf("Enter name: ");
+        scanf("%s", s[i].name);
+        printf("Enter roll number: ");
+        scanf("%d", &s[i].roll);
+        printf("Enter marks: ");
+        scanf("%f", &s[i].marks);
+    }
+
+    struct student top = getTopStudent(s, 5);
+    printf("\nTop Student:\n");
+    printf("Name: %s\n", top.name);
+    printf("Roll number: %d\n", top.roll);
+    printf("Marks: %.2f\n", top.marks);
+
+    return 0;
+}
