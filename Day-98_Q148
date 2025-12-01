@@ -1,0 +1,36 @@
+// Take two structs as input and check if they are identical.
+
+#include <stdio.h>
+#include <string.h>
+
+struct Data {
+    int id;
+    char name[50];
+    float score;
+};
+
+int areStructsIdentical(struct Data s1, struct Data s2) {
+    if (s1.id != s2.id) return 0;
+    if (strcmp(s1.name, s2.name) != 0) return 0;
+    if (s1.score != s2.score) return 0;
+    return 1;
+}
+
+int main() {
+    struct Data struct1, struct2;
+
+    // Input for struct1
+    printf("Enter id, name, and score for struct1:\n");
+    scanf("%d %49s %f", &struct1.id, struct1.name, &struct1.score);
+
+    // Input for struct2
+    printf("Enter id, name, and score for struct2:\n");
+    scanf("%d %49s %f", &struct2.id, struct2.name, &struct2.score);
+
+    if (areStructsIdentical(struct1, struct2))
+        printf("The structs are identical.\n");
+    else
+        printf("The structs are not identical.\n");
+
+    return 0;
+}
