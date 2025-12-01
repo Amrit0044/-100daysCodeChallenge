@@ -1,0 +1,44 @@
+// Use pointer to struct to modify and display data using -> operator.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Data {
+    int id;
+    char name[50];
+    float score;
+};
+
+int main() {
+    struct Data *ptr;
+    
+    // Allocate memory dynamically
+    ptr = (struct Data*)malloc(sizeof(struct Data));
+    if (ptr == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    
+    // Input initial data using -> operator
+    printf("Enter initial id, name, and score:\n");
+    scanf("%d %49s %f", &ptr->id, ptr->name, &ptr->score);
+    
+    // Display initial data
+    printf("\nInitial \n");
+    printf("ID: %d, Name: %s, Score: %.2f\n", ptr->id, ptr->name, ptr->score);
+    
+    // Modify data using -> operator
+    printf("\nModifying data...\n");
+    ptr->id = 101;
+    strcpy(ptr->name, "Modified Name");
+    ptr->score = 98.5;
+    
+    // Display modified data
+    printf("Modified data:\n");
+    printf("ID: %d, Name: %s, Score: %.2f\n", ptr->id, ptr->name, ptr->score);
+    
+    // Free memory
+    free(ptr);
+    return 0;
+}
